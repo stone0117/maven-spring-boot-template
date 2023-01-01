@@ -1,0 +1,37 @@
+package cn.wolfcode.domain;
+
+import java.util.StringJoiner;
+import java.io.Serializable;
+
+${authorString}
+public class ${className} implements Serializable{
+#foreach( $field in $fields)
+  /** ${field.Comment} */
+  private ${field.javaType} ${field.javaField};
+#end
+
+
+#foreach( $field in $fields)
+  public ${field.javaType} ${field.getFunctionName}(){
+    return ${field.javaField};
+  }
+
+  public void ${field.setFunctionName}(${field.javaType} ${field.javaField}){
+    this.${field.javaField} = ${field.javaField};
+  }
+
+#end
+
+  @Override
+  public String toString() {
+    return new StringJoiner(", ", ${className}.class.getSimpleName() + "[", "]")
+  #foreach( $field in $fields)
+    #if(${field.javaType} == 'String')
+        .add("${field.javaField}='" + ${field.javaField} + "'")
+    #else
+        .add("${field.javaField}=" + ${field.javaField})
+    #end
+  #end
+      .toString();
+    }
+}

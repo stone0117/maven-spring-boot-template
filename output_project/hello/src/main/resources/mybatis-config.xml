@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <!-- mybatis框架的个性化配置可在此配置 -->
+  <!-- log4j2与mybatis集成，目的是打印出sql语句 -->
+  <settings>
+    <!-- <setting name="logImpl" value="STDOUT_LOGGING" /> -->
+    <setting name="logImpl" value="Log4J2" />
+    <!-- 这里的value值可以是SLF4J、Apache Commons Logging、Log4J2、Log4J、JDK logging（除Log4J2、Log4J外，其他未验证），并会按顺序查找 -->
+<!--    <setting name="mapUnderscoreToCamelCase" value="true" />-->
+  </settings>
+</configuration>

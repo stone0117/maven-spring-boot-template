@@ -1,0 +1,61 @@
+package com.stone.web.controller;
+
+import ${groupId}.domain.PageResult;
+import ${groupId}.domain.${className};
+import ${groupId}.pojo.qo.${className}QueryObject;
+import ${groupId}.service.${className}Service;
+import ${groupId}.utils.JsonResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+${authorString}
+@RestController
+@RequestMapping(path = "/${domain}")
+// @CrossOrigin
+public class ${className}Controller {
+
+  @Autowired
+  private ${className}Service ${domain}Service;
+
+  @RequestMapping("/saveOrUpdate")
+  public Object saveOrUpdate(${className} ${domain}) {
+    ${domain}Service.saveOrUpdate(${domain});
+    return JsonResult.success();
+  }
+
+  @RequestMapping("/delete")
+  public Object delete(@RequestParam("id") ${primaryField.javaType} ${primaryField.javaField}) {
+    // ${className} ${domain} = new ${className}();
+    // ${domain}.setId(${primaryField.javaField});
+    // ${domain}Service.removeByIdWithFill(${domain});
+    ${domain}Service.removeById(${primaryField.javaField});
+    return JsonResult.success();
+  }
+
+  @RequestMapping("/update")
+  public Object update(${className} ${domain}) {
+    boolean success = ${domain}Service.updateById(${domain});
+    return JsonResult.success();
+  }
+
+  @RequestMapping("/list")
+  public Object list(${className}QueryObject qo) {
+    PageResult<${className}> pageResult = ${domain}Service.queryForList(qo);
+    return JsonResult.success(pageResult);
+  }
+
+  @RequestMapping("/input")
+  public Object input(@RequestParam("id") ${primaryField.javaType} ${primaryField.javaField}) {
+    if (${primaryField.javaField} != null) {
+      ${className} ${domain} = ${domain}Service.getById(${primaryField.javaField});
+      return JsonResult.success(${domain});
+    }
+    else {
+      return JsonResult.success();
+    }
+  }
+}
+
+

@@ -1,0 +1,17 @@
+package ${groupId}.mapper;
+
+import ${groupId}.domain.${className};
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Param;
+
+import java.io.Serializable;
+
+${authorString}
+public interface ${className}Mapper extends DefaultBaseMapper<${className}>{
+
+  <T> T selectByPrimaryKey(@Param("id") Serializable id);
+
+  <T, R> Page<R> queryForList(@Param("page") Page<R> page, @Param(Constants.WRAPPER) Wrapper<T> wrapper);
+}

@@ -1,0 +1,15 @@
+package com.stone.service;
+
+import ${groupId}.domain.PageResult;
+import ${groupId}.domain.${className};
+import ${groupId}.pojo.qo.${className}QueryObject;
+
+import java.io.Serializable;
+
+${authorString}
+public interface ${className}Service extends DefaultService<${className}> {
+
+  <T> T selectByPrimaryKey(Serializable id);
+
+  <T> PageResult<T> queryForList(${className}QueryObject qo);
+}

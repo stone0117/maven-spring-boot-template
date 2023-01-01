@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>${groupId}</groupId>
+  <artifactId>${artifactId}</artifactId>
+  <version>${version}</version>
+  <packaging>${packaging}</packaging>
+
+  <name>${name}</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+    <java.version>${javaVersion}</java.version>
+    <maven.compiler.source>${javaVersion}</maven.compiler.source>
+    <maven.compiler.target>${javaVersion}</maven.compiler.target>
+    <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+    <!-- ////////////////////////////////////////////////////// -->
+    <junit.version>4.12</junit.version>
+    <!-- ////////////////////////////////////////////////////// -->
+    <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
+    <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+    <javax.servlet.jsp-api.version>2.3.0</javax.servlet.jsp-api.version>
+    <javax.el-api.version>3.0.0</javax.el-api.version>
+    <jstl.version>1.2</jstl.version>
+    <!-- ////////////////////////////////////////////////////// -->
+    <mysql-connector-java.version>5.1.26</mysql-connector-java.version>
+    <mybatis.version>3.5.3</mybatis.version>
+    <druid.version>1.1.10</druid.version>
+    <mybatis-generator-core.version>1.4.0</mybatis-generator-core.version>
+    <mybatis-generator-maven-plugin.version>1.4.0</mybatis-generator-maven-plugin.version>
+    <!-- ////////////////////////////////////////////////////// -->
+    <log4j-core.version>2.8.2</log4j-core.version>
+    <log4j-api.version>2.8.2</log4j-api.version>
+    <log4j-web.version>2.8.2</log4j-web.version>
+    <log4j-slf4j-impl.version>2.8.2</log4j-slf4j-impl.version>
+    <log4j-jcl.version>2.8.2</log4j-jcl.version>
+    <slf4j-api.version>1.7.25</slf4j-api.version>
+    <!-- ////////////////////////////////////////////////////// -->
+    <!-- json -->
+    <fastjson.version>1.2.73</fastjson.version>
+    <jackson-databind.version>2.9.6</jackson-databind.version>
+    <gson.version>2.8.5</gson.version>
+    <!-- ////////////////////////////////////////////////////// -->
+    <commons-beanutils.version>1.8.3</commons-beanutils.version>
+    <pagehelper.version>5.2.0</pagehelper.version>
+    <commons-fileupload.version>1.3.1</commons-fileupload.version>
+    <commons-io.version>2.8.0</commons-io.version>
+    <!-- ////////////////////////////////////////////////////// -->
+
+    <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+    <tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
+
+    <tomcat.port>8080</tomcat.port>
+    <tomcat.contextPath>/</tomcat.contextPath>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- ///////////////////////// spring 开始 ////////////////////////////////////////////// -->
+      <!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
+      <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>javax.annotation-api</artifactId>
+        <version>\${javax.annotation-api.version}</version>
+      </dependency>
+
+      <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ spring 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+      <!-- ///////////////////////// test 开始 ////////////////////////////////////////////// -->
+
+      <!-- 测试阶段才用 -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>\${junit.version}</version>
+      </dependency>
+      <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ test 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+      <!-- ///////////////////////// web 开始 ////////////////////////////////////////////// -->
+
+      <!-- 测试 -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>\${javax.servlet-api.version}</version>
+      </dependency>
+
+      <!-- 测试 -->
+      <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>javax.servlet.jsp-api</artifactId>
+        <version>\${javax.servlet.jsp-api.version}</version>
+      </dependency>
+
+      <!-- 测试 -->
+      <dependency>
+        <groupId>javax.el</groupId>
+        <artifactId>javax.el-api</artifactId>
+        <version>\${javax.el-api.version}</version>
+      </dependency>
+
+      <!-- 测试 -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>\${jstl.version}</version>
+      </dependency>
+
+      <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ web 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+      <!-- ///////////////////////// log 开始 ////////////////////////////////////////////// -->
+
+      <!-- 日志：Log4j2 + Slf4j -->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>\${log4j-core.version}</version>
+      </dependency>
+
+      <!-- 日志：Log4j2 + Slf4j -->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>\${log4j-api.version}</version>
+      </dependency>
+
+      <!-- 日志：Log4j2 + Slf4j -->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-web</artifactId>
+        <version>\${log4j-web.version}</version>
+      </dependency>
+
+      <!-- 日志：Log4j2 + Slf4j -->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j-impl</artifactId>
+        <version>\${log4j-slf4j-impl.version}</version>
+      </dependency>
+
+      <!-- 日志：Log4j2 + Slf4j -->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-jcl</artifactId>
+        <version>\${log4j-jcl.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>\${slf4j-api.version}</version>
+      </dependency>
+      <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ log 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+      <!-- ///////////////////////// json 开始 ////////////////////////////////////////////// -->
+
+      <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>\${fastjson.version}</version>
+      </dependency>
+
+      <!-- Spring内置json解析包, 稳定 -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>\${jackson-databind.version}</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+      <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>\${gson.version}</version>
+      </dependency>
+      <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ json 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+      <!-- ///////////////////////// mysql 开始 ////////////////////////////////////////////// -->
+
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>\${mysql-connector-java.version}</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>\${mybatis.version}</version>
+      </dependency>
+
+      <!-- 阿里巴巴数据库连接池: druid -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>\${druid.version}</version>
+      </dependency>
+
+      <!-- MBG依赖 -->
+      <dependency>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-core</artifactId>
+        <version>\${mybatis-generator-core.version}</version>
+      </dependency>
+
+      <!-- MBG依赖 -->
+      <dependency>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-maven-plugin</artifactId>
+        <version>\${mybatis-generator-maven-plugin.version}</version>
+      </dependency>
+      <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ mysql 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+      <!-- ///////////////////////// tool 开始 ////////////////////////////////////////////// -->
+
+      <!-- 1.8和1.9有点不一样 -->
+      <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>\${commons-beanutils.version}</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper</artifactId>
+        <version>\${pagehelper.version}</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+      <dependency>
+        <groupId>commons-fileupload</groupId>
+        <artifactId>commons-fileupload</artifactId>
+        <version>\${commons-fileupload.version}</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>\${commons-io.version}</version>
+      </dependency>
+      <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ tool 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+
+    <!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+    </dependency>
+    <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ spring 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+    <!-- ///////////////////////// test 开始 ////////////////////////////////////////////// -->
+    <!-- 测试阶段才用 -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ test 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+    <!-- ///////////////////////// web 开始 ////////////////////////////////////////////// -->
+    <!-- 测试 -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- 测试 -->
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>javax.servlet.jsp-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- 测试 -->
+    <dependency>
+      <groupId>javax.el</groupId>
+      <artifactId>javax.el-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- 测试 -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+    </dependency>
+    <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ web 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+    <!-- ///////////////////////// log 开始 ////////////////////////////////////////////// -->
+    <!-- 日志：Log4j2 + Slf4j -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+    </dependency>
+    <!-- 日志：Log4j2 + Slf4j -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+    </dependency>
+    <!-- 日志：Log4j2 + Slf4j -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-web</artifactId>
+    </dependency>
+    <!-- 日志：Log4j2 + Slf4j -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+    </dependency>
+    <!-- 日志：Log4j2 + Slf4j -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-jcl</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ log 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+    <!-- ///////////////////////// json 开始 ////////////////////////////////////////////// -->
+    <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+    </dependency>
+    <!-- Spring内置json解析包, 稳定 -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+    </dependency>
+    <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ json 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+    <!-- ///////////////////////// mysql 开始 ////////////////////////////////////////////// -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+    </dependency>
+    <!-- 阿里巴巴数据库连接池: druid -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+    </dependency>
+    <!-- MBG依赖 -->
+    <dependency>
+      <groupId>org.mybatis.generator</groupId>
+      <artifactId>mybatis-generator-core</artifactId>
+    </dependency>
+    <!-- MBG依赖 -->
+    <dependency>
+      <groupId>org.mybatis.generator</groupId>
+      <artifactId>mybatis-generator-maven-plugin</artifactId>
+    </dependency>
+    <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ mysql 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+    <!-- ///////////////////////// tool 开始 ////////////////////////////////////////////// -->
+    <!-- 1.8和1.9有点不一样 -->
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+    <!-- \\\\\\\\\\\\\\\\\\\\\\\\\ tool 结束 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+    <dependency>
+      <groupId>com.stone</groupId>
+      <artifactId>stoneutils</artifactId>
+      <version>1.2-SNAPSHOT</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>${finalName}</finalName>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>\${maven-compiler-plugin.version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>\${tomcat7-maven-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <configuration>
+          <path>\${tomcat.contextPath}</path>
+          <update>true</update>
+          <port>\${tomcat.port}</port>
+          <url>http://localhost:\${tomcat.port}/manager/text</url>
+          <!-- <server>tomcat8</server>-->
+          <username>root</username>
+          <password>admin</password>
+
+          <!--
+            Tomcat7 及之前手动修改配置文件，使用代码手动转；但若使用 Maven 的话，可以 pom.xml 中的Tomcat 插件配置一行也可以解决：
+          -->
+          <uriEncoding>UTF-8</uriEncoding>
+          <!-- <charset>UTF-8</charset>-->
+        </configuration>
+      </plugin>
+    </plugins>
+
+  </build>
+</project>

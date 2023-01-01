@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.4.3</version>
+    <relativePath />
+  </parent>
+
+  <groupId>com.stone</groupId>
+  <artifactId>hello</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>hello</name>
+  <description>project for Spring Boot</description>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+  </properties>
+  
+  <dependencies>
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////// 000:spring-boot /////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    -->
+    <!-- spring-boot web相关包 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId> 
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+      </exclusions>  
+    </dependency>
+    <!-- spring-boot 核心包 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId> 
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+      </exclusions>  
+    </dependency>
+    <!-- 引入log4j2依赖 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-log4j2</artifactId>   
+    </dependency>
+    <!-- spring-boot 测试包 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>   
+    </dependency>
+    <!-- 支持使用 Spring AOP 和 AspectJ 进行切面编程, tx:annotation-driven 就是支持事务注解的（@Transactional） 。https://www.cnblogs.com/alice-cj/p/10417773.html -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-aop</artifactId>   
+    </dependency>
+    <!-- spring默认使用yml中的配置，但有时候要用传统的xml或properties配置，就需要使用spring-boot-configuration-processor了 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>   
+    </dependency>
+    <!-- Java访问数据库的标准规范 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>   
+    </dependency>
+    <!-- 连接mysql数据库的驱动 -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>   
+    </dependency>
+    <!-- freemarker -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-freemarker</artifactId>   
+    </dependency>
+    <!-- <optional>true</optional>表示两个项目之间依赖不传递 -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>   
+    </dependency>
+    <!-- mybatis-spring-boot-starter -->
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>   
+        <version>2.1.3</version>
+    </dependency>
+    <!-- mybatis-plus-boot-starter -->
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus-boot-starter</artifactId>   
+        <version>3.4.0</version>
+    </dependency>
+    <!-- spring boot 阿里巴巴数据库连接池: druid -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid-spring-boot-starter</artifactId>   
+        <version>1.1.10</version>
+    </dependency>
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////// 001:json /////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    -->
+    <!-- jackson和Gson spring-boot管理了, 版本引错欲仙欲死 - -!!! -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>   
+        <version>1.2.73</version>
+    </dependency>
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////// 002:tool /////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    -->
+    <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>   
+        <version>1.3.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>   
+        <version>2.8.0</version>
+    </dependency>
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////// 003:poi /////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    -->
+
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////// 004:spider /////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    -->
+
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////// 005:performance /////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    -->
+    <!-- https://mvnrepository.com/artifact/p6spy/p6spy -->
+    <dependency>
+      <groupId>p6spy</groupId>
+      <artifactId>p6spy</artifactId>   
+        <version>3.8.7</version>
+    </dependency>
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////// 006:mybatis-plus-generator /////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    -->
+    <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus-generator</artifactId>  
+        <scope>test</scope> 
+        <version>3.4.0</version>
+    </dependency>
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////// 007:redis /////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    -->
+
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////// 009:swagger2 /////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    -->
+
+
+    <dependency>
+      <groupId>com.stone</groupId>
+      <artifactId>stoneutils</artifactId>
+      <version>1.2-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>hello</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.zeroturnaround</groupId>
+        <artifactId>jrebel-maven-plugin</artifactId>
+        <version>1.1.10</version>
+        <executions>
+          <execution>
+            <id>generate-rebel-xml</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- spring-boot 打包插件 -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

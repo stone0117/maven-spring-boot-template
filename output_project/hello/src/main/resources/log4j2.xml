@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+  <appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="[%d{HH:mm:ss.SSS}] %-5level %class{36} %L %M - %highlight{%msg%xEx}%n" />
+    </Console>
+  </appenders>
+  <loggers>
+    <root level="INFO">
+      <appender-ref ref="Console" />
+    </root>
+    <!--
+      additivity="false" 与root关系
+      在log4j2.xml文件中配置了多个appender，但在logger中使用的时候，如果没有在<root>标签中配置有的appender，根本不生效。
+      但是如果在<root>中配置了，而在logger中都没有配置的appender也会调用到。这会导致日志重复输出。
+      root的作用是收集下面所有反馈上来的信息流并根据配置在root中appender进行输出，
+      只要你在looger中配置了additivity="false"，就不会反馈到root中。
+    -->
+    <logger name="com.stone.mapper" level="ALL" additivity="false">
+      <appender-ref ref="Console" />
+    </logger>
+
+    <!-- 性能分析, 打印sql花费的时间   -->
+    <logger name="org.springframework.aop.interceptor.PerformanceMonitorInterceptor" level="ALL" additivity="false">
+      <appender-ref ref="Console" />
+    </logger>
+
+    <!--log4j2 自带过滤日志-->
+    <Logger name="org.apache.catalina.startup.DigesterFactory" level="error" />
+    <Logger name="org.apache.catalina.util.LifecycleBase" level="error" />
+    <Logger name="org.apache.coyote.http11.Http11NioProtocol" level="warn" />
+    <logger name="org.apache.sshd.common.util.SecurityUtils" level="warn" />
+    <Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="warn" />
+    <Logger name="org.crsh.plugin" level="warn" />
+    <logger name="org.crsh.ssh" level="warn" />
+    <Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="error" />
+    <Logger name="org.hibernate.validator.internal.util.Version" level="warn" />
+    <logger name="org.springframework.boot.actuate.autoconfigure.CrshAutoConfiguration" level="warn" />
+    <logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn" />
+    <logger name="org.thymeleaf" level="warn" />
+    <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
+    <!--  <logger name="org.springframework" level="WARN" additivity="false" />-->
+    <!--  <logger name="org.springframework.context" level="WARN" additivity="false" />-->
+    <!--  <logger name="org.springframework.core" level="WARN" additivity="false" />-->
+    <!--  <logger name="org.springframework.beans" level="WARN" additivity="false" />-->
+    <!--  <logger name="org.springframework.test" level="WARN" additivity="false" />-->
+    <!--  <logger name="org.apache.ibatis.io" level="WARN" additivity="false" />-->
+    <!--  <logger name="org.apache.http" level="WARN" additivity="false" />-->
+    <!--  <logger name="druid.sql.ResultSet" level="WARN" additivity="false" />-->
+    <!--  <logger name="druid.sql.Statement" level="WARN" additivity="false" />-->
+    <!--  <logger name="org.mybatis.spring" level="WARN" additivity="false" />-->
+  </loggers>
+</configuration>

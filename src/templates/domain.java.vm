@@ -1,0 +1,35 @@
+package com.stone.domain;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import lombok.Data;
+import com.baomidou.mybatisplus.annotation.*;
+
+import java.util.Date;
+
+import java.util.StringJoiner;
+import java.io.Serializable;
+
+${authorString}
+@Data
+// 字符串字段如果经常使用Like, 可以直接在字段上设置注解
+// @TableField(condition=SqlCondition.LIKE)
+// 逻辑删除, 配置全局逻辑删除设置
+// @TableLogic 贴上注解就可以
+@TableName(value = "${tableName}")
+public class User implements Serializable {
+  private static final long serialVersionUID = 1L;
+
+  #foreach( $field in $fields)
+    #if(${field.Key} == 'PRI')
+      /** ${field.Comment} */
+      // @TableId(value = "${field.Field}", type = IdType.AUTO)
+      @TableId(value = "${field.Field}")
+      private ${field.javaType} ${field.javaField};
+    #else
+      /** ${field.Comment} */
+      private ${field.javaType} ${field.javaField};
+    #end
+  #end
+}

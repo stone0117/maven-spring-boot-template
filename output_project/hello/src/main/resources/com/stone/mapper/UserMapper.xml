@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--@ignoreSql-->
+<!--
+  上面的注释表示 关闭 mybatis-helper插件的功能
+-->
+<!--$sql0-->
+<!--
+  告诉 mybatis-helper $ 代表什么意思, 数字 或者 字段
+-->
+
+<mapper namespace="com.stone.mapper.UserMapper">
+
+  <resultMap id="BaseResultMap" type="com.stone.domain.User">
+    <!--@Table t_user-->
+    <id column="id" property="id" />
+<result column="name" property="name" />
+<result column="age" property="age" />
+<result column="gender" property="gender" />
+<result column="email" property="email" />
+<result column="phone" property="phone" />
+<result column="birthday" property="birthday" />
+<result column="entry_date" property="entryDate" />
+<result column="job" property="job" />
+<result column="salary" property="salary" />
+<result column="resume" property="resume" />
+<result column="country" property="country" />
+  </resultMap>
+
+  <resultMap id="ExtResultMap" type="com.stone.domain.User" extends="BaseResultMap">
+
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id,name,age,gender,email,phone,birthday,entry_date,job,salary,resume,country
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM t_user WHERE id = #{id}
+  </select>
+
+  <select id="queryForList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM t_user ${ew.customSqlSegment} <!--$sql-->
+  </select>
+
+  <!-- <select id="selectAll" resultMap="BaseResultMap"> -->
+  <!-- 如果配置了 ${ew.sqlSelect} 这个, 那必须得有 queryWrapper.select(Customer.class,tableFieldInfo -> true); 这种代码 -->
+  <!--@ignoreSql-->
+  <!-- SELECT ${ew.sqlSelect} FROM t_user ${ew.customSqlSegment} -->
+  <!-- </select> -->
+
+</mapper>
